@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ resource.title }} - Debo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .resource-box {
+            background: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .meta-info {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .subject-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #9b59b6;
+            color: white;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Resource Details</h1>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="{% url 'resource_list' %}">All Resources</a>
+        </div>
+    </div>
+
+    <div class="resource-box">
+        <h2>{{ resource.title }}</h2>
+        <p>{{ resource.description|default:"No description provided" }}</p>
+
+        <div class="meta-info">
+            <p><span class="subject-badge">{{ resource.get_subject_display }}</span></p>
+            <p><strong>Uploaded by:</strong> {{ resource.uploader.username }}</p>
+            <p><strong>Upload date:</strong> {{ resource.uploaded_at|date:"F d, Y H:i" }}</p>
+            <p><strong>File size:</strong> {{ resource.get_file_size }} MB</p>
+            <p><strong>Downloads:</strong> {{ resource.download_count }}</p>
+        </div>
+
+        <a href="{% url 'resource_download' resource.pk %}" class="btn">Download This Resource</a>
+    </div>
+</body>
+</html>

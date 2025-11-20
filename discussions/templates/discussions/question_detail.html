@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ question.title }} - Debo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .nav-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .question-box {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .reply-box {
+            background: #ecf0f1;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .meta-info {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .subject-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #229954;
+        }
+        .messages {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Debo Discussion Forum</h1>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="{% url 'question_list' %}">All Questions</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'question_create' %}">Ask Question</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="messages {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="question-box">
+        <h2>{{ question.title }}</h2>
+        <p>{{ question.description }}</p>
+        <div class="meta-info">
+            <span class="subject-badge">{{ question.get_subject_display }}</span>
+            Posted by <strong>{{ question.author.username }}</strong> on {{ question.created_at|date:"M d, Y H:i" }}
+        </div>
+    </div>
+
+    <h3>Replies ({{ replies.count }})</h3>
+
+    {% if replies %}
+        {% for reply in replies %}
+            <div class="reply-box">
+                <p>{{ reply.content }}</p>
+                <div class="meta-info">
+                    By <strong>{{ reply.author.username }}</strong> on {{ reply.created_at|date:"M d, Y H:i" }}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No replies yet. Be the first to reply!</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <div class="question-box">
+            <h3>Post a Reply</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Submit Reply</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="question-box">
+            <p><a href="{% url 'login' %}">Login</a> to post a reply</p>
+        </div>
+    {% endif %}
+</body>
+</html>
