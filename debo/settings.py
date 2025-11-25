@@ -20,12 +20,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-siy)yf*^isk2&lbiv$gy2+3g=)!o#6%nzg!zac!u#zk16v1qi$"
+import os
+from django.core.exceptions import ImproperlyConfigured
+
+# --- SECRET_KEY CONTROL ---
+
+# We define a function to check for the key's existence
+def get_env_variable(var_name):
+    """Get the environment variable or raise an exception."""
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        # This will fail the deployment if the key is missing—which is good!
+        error_msg = f"Set the {var_name} environment variable"
+        raise ImproperlyConfigured(error_msg)
+
+# Set SECRET_KEY using an environment variable called 'SECRET_KEY_RENDER'
+# We use a unique name to avoid confusion with internal Django processes.
+SECRET_KEY = os.environ.get('SECRET_KEY_RENDER')
+
+# If SECRET_KEY_RENDER is NOT set (meaning you are running locally):
+if not SECRET_KEY:
+    # Use your local key from a safe place (like a separate secrets file NOT tracked by Git)
+    # OR, for local development convenience, you can hardcode a SIMPLE, non-production key here:
+    # WARNING: DO NOT COMMIT A REAL SECRET KEY HERE!
+    SECRET_KEY = 'a-simple-local-development-key-that-is-not-used-in-production-123'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,6 +68,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -121,3 +145,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
+# Location where 'collectstatic' will place all files (managed by Render)
+import os # Ensure this is at the top of settings.py
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# WhiteNoise storage to compress and cache static files
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+DEBUG = os.environ.get('DEBUG_ENV', 'False') == 'True'

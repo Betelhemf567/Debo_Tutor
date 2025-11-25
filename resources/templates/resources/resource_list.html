@@ -1,139 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Resources - Debo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .nav-links a {
-            color: #3498db;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-        .filter-section {
-            background: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .resource-card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .resource-card h3 {
-            margin-top: 0;
-        }
-        .meta-info {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-        .subject-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #9b59b6;
-            color: white;
-            border-radius: 3px;
-            font-size: 12px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #27ae60;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #229954;
-        }
-        .btn-download {
-            background-color: #3498db;
-            padding: 8px 15px;
-            font-size: 14px;
-        }
-        .btn-download:hover {
-            background-color: #2980b9;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Resources - Debo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1200px;
+      margin: 30px auto;
+      background-color: #f9fafb;
+      color: #333;
+      padding: 0 15px;
+      user-select: none;
+    }
+    .header {
+      background-color: #34495e;
+      color: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #ecf0f1;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      background-color: transparent;
+      box-shadow: 0 0 0 transparent;
+      user-select: none;
+    }
+    .nav-links a:hover {
+      color: #1abc9c;
+      background-color: rgba(255,255,255,0.1);
+      box-shadow: 0 6px 20px rgba(26,188,156,0.3);
+      transform: translateY(-3px);
+    }
+    .filter-section {
+      background: white;
+      padding: 20px 30px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .filter-section h3 {
+      font-weight: 700;
+      color: #34495e;
+    }
+    .filter-section select {
+      padding: 12px 18px;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+      min-width: 240px;
+      user-select: none;
+    }
+    .filter-section select:hover,
+    .filter-section select:focus {
+      border-color: #1abc9c;
+      outline: none;
+      box-shadow: 0 0 8px rgba(26,188,156,0.5);
+    }
+    .filter-section a {
+      color: #9b59b6;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+    }
+    .btn-upload {
+      background-color: #1abc9c;
+      color: white;
+      padding: 14px 34px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(26,188,156,0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+    .btn-upload:hover {
+      background-color: #16a085;
+      box-shadow: 0 14px 40px rgba(22,160,133,0.8);
+    }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .resource-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 14px 38px rgba(0,0,0,0.1);
+      padding: 30px 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      user-select: text;
+    }
+    .resource-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.18);
+    }
+    .resource-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    .resource-description {
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+    .resource-meta {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+    .subject-badge {
+      background-color: #9b59b6;
+      color: white;
+      padding: 8px 24px;
+      border-radius: 35px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: inline-block;
+      user-select: none;
+    }
+    .btn-download {
+      background-color: #3498db;
+      color: white;
+      border-radius: 35px;
+      padding: 15px 40px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(52, 152, 219, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn-download:hover {
+      background-color: #2980b9;
+      box-shadow: 0 18px 50px rgba(41, 128, 185, 0.8);
+    }
+    .view-details-link {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #34495e;
+      text-decoration: none;
+      margin-left: 25px;
+      transition: color 0.3s ease;
+      display: inline-block;
+      user-select: none;
+      cursor: pointer;
+    }
+    .view-details-link:hover {
+      color: #9b59b6;
+    }
+    p.no-resources {
+      font-style: italic;
+      text-align: center;
+      margin-top: 80px;
+      color: #999;
+      font-size: 1.3rem;
+      user-select: none;
+    }
+    @media(max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Study Resources</h1>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="{% url 'question_list' %}">Discussions</a>
-
-            <a href="{% url 'resource_list' %}">All Resources</a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'resource_upload' %}">Upload Resource</a>
-                <a href="{% url 'logout' %}">Logout ({{ user.username }})</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-            {% endif %}
-        </div>
+  <div class="header">
+    <h1>Study Resources</h1>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="{% url 'question_list' %}">Discussions</a>
+      <a href="{% url 'resource_list' %}">All Resources</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'resource_upload' %}">Upload Resource</a>
+      <a href="{% url 'logout' %}">Logout ({{ user.username }})</a>
+      {% else %}
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
+      {% endif %}
     </div>
+  </div>
 
-    <div class="filter-section">
-        <h3>Filter by Subject</h3>
-        <form method="get">
-            <select name="subject" onchange="this.form.submit()">
-                <option value="">All Subjects</option>
-                {% for value, label in subjects %}
-                    <option value="{{ value }}" {% if current_subject == value %}selected{% endif %}>
-                        {{ label }}
-                    </option>
-                {% endfor %}
-            </select>
-        </form>
-        {% if current_subject %}
-            <p><a href="{% url 'resource_list' %}">Clear filter</a></p>
-        {% endif %}
-    </div>
-
-    <div>
-        <a href="{% url 'resource_upload' %}" class="btn">Upload New Resource</a>
-    </div>
-
-    <h2>Available Resources</h2>
-
-    {% if resources %}
-        {% for resource in resources %}
-            <div class="resource-card">
-                <h3>{{ resource.title }}</h3>
-                <p>{{ resource.description|default:"No description provided" }}</p>
-                <div class="meta-info">
-                    <span class="subject-badge">{{ resource.get_subject_display }}</span>
-                    Uploaded by <strong>{{ resource.uploader.username }}</strong> on {{ resource.uploaded_at|date:"M d, Y" }}
-                    | Size: {{ resource.get_file_size }} MB | Downloads: {{ resource.download_count }}
-                </div>
-                <div style="margin-top: 10px;">
-                    <a href="{% url 'resource_download' resource.pk %}" class="btn btn-download">Download</a>
-                    <a href="{% url 'resource_detail' resource.pk %}">View Details</a>
-                </div>
-            </div>
+  <div class="filter-section">
+    <h3>Filter by Subject</h3>
+    <form method="get">
+      <select name="subject" onchange="this.form.submit()">
+        <option value="">All Subjects</option>
+        {% for value, label in subjects %}
+        <option value="{{ value }}" {% if current_subject == value %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
-    {% else %}
-        <p>No resources available yet. Be the first to upload!</p>
+      </select>
+    </form>
+    {% if current_subject %}
+    <p><a href="{% url 'resource_list' %}">Clear filter</a></p>
     {% endif %}
+  </div>
+
+  <a href="{% url 'resource_upload' %}" class="btn-upload">Upload New Resource</a>
+
+  <h2>Available Resources</h2>
+
+  {% if resources %}
+  <div class="resources-grid">
+    {% for resource in resources %}
+    <div class="resource-card">
+      <span class="subject-badge">{{ resource.get_subject_display }}</span>
+      <h3 class="resource-title">{{ resource.title }}</h3>
+      <p class="resource-description">{{ resource.description|truncatewords:20 }}</p>
+      <p class="resource-meta">
+        Uploaded by <strong>{{ resource.uploader.username }}</strong> on {{ resource.uploaded_at|date:"M d, Y" }}<br />
+        Size: {{ resource.get_file_size }} MB | Downloads: {{ resource.download_count }}
+      </p>
+      <a href="{% url 'resource_download' resource.pk %}" class="btn-download">Download</a>
+      <a href="{% url 'resource_detail' resource.pk %}" class="view-details-link">View Details</a>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="no-resources">No resources available yet. Be the first to upload!</p>
+  {% endif %}
 </body>
 </html>

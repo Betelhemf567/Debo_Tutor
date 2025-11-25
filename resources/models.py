@@ -38,3 +38,4 @@ class Resource(models.Model):
         if self.file:
             return round(self.file.size / (1024 * 1024), 2)
         return 0
+

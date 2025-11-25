@@ -1,145 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ question.title }} - Debo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .nav-links a {
-            color: #3498db;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-        .question-box {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .reply-box {
-            background: #ecf0f1;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-        .meta-info {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-        .subject-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #3498db;
-            color: white;
-            border-radius: 3px;
-            font-size: 12px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .btn {
-            padding: 10px 20px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #229954;
-        }
-        .messages {
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ question.title }} - Debo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9fafb;
+      color: #333;
+    }
+    .header {
+      background-color: #34495e;
+      color: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 1.1px;
+    }
+    .nav-links {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .nav-links a {
+      color: #ecf0f1;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #1abc9c;
+    }
+    .question-box {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.1);
+      padding: 30px 35px;
+      margin-bottom: 30px;
+    }
+    .question-box h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    .question-box p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      color: #555;
+    }
+    .subject-badge {
+      display: inline-block;
+      background-color: #3498db;
+      color: white;
+      padding: 7px 22px;
+      border-radius: 35px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 15px;
+    }
+    .meta-info {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .reply-box {
+      background: #ecf0f1;
+      padding: 20px 25px;
+      border-radius: 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+    }
+    .reply-box p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      color: #444;
+    }
+    .reply-meta {
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 600;
+      text-align: right;
+    }
+    .form-box {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 35px 30px;
+      margin-top: 40px;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+    .form-control {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      margin-bottom: 25px;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #1abc9c;
+      outline: none;
+      box-shadow: 0 0 10px rgba(26, 188, 156, 0.4);
+    }
+    button.btn {
+      background-color: #1abc9c;
+      color: white;
+      border-radius: 40px;
+      padding: 16px 48px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(26, 188, 156, 0.5);
+      user-select: none;
+    }
+    button.btn:hover,
+    button.btn:focus {
+      background-color: #16a085;
+      box-shadow: 0 15px 40px rgba(22, 160, 133, 0.7);
+      outline: none;
+    }
+    .messages {
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 1rem;
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 2px solid #c3e6cb;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 2px solid #f5c6cb;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Debo Discussion Forum</h1>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="{% url 'question_list' %}">All Questions</a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'question_create' %}">Ask Question</a>
-            {% endif %}
-        </div>
+  <div class="header">
+    <h1>Debo Discussion Forum</h1>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="{% url 'question_list' %}">All Questions</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'question_create' %}">Ask Question</a>
+      {% endif %}
     </div>
+  </div>
 
-    {% if messages %}
-        {% for message in messages %}
-            <div class="messages {{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="messages {{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+  {% endif %}
 
-    <div class="question-box">
-        <h2>{{ question.title }}</h2>
-        <p>{{ question.description }}</p>
-        <div class="meta-info">
-            <span class="subject-badge">{{ question.get_subject_display }}</span>
-            Posted by <strong>{{ question.author.username }}</strong> on {{ question.created_at|date:"M d, Y H:i" }}
-        </div>
+  <div class="question-box">
+    <h2>{{ question.title }}</h2>
+    <span class="subject-badge">{{ question.get_subject_display }}</span>
+    <p>{{ question.description }}</p>
+    <div class="meta-info">
+      Posted by <strong>{{ question.author.username }}</strong> on {{ question.created_at|date:"M d, Y H:i" }}
     </div>
+  </div>
 
-    <h3>Replies ({{ replies.count }})</h3>
+  <h3>Replies ({{ replies.count }})</h3>
 
-    {% if replies %}
-        {% for reply in replies %}
-            <div class="reply-box">
-                <p>{{ reply.content }}</p>
-                <div class="meta-info">
-                    By <strong>{{ reply.author.username }}</strong> on {{ reply.created_at|date:"M d, Y H:i" }}
-                </div>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>No replies yet. Be the first to reply!</p>
-    {% endif %}
+  {% if replies %}
+  {% for reply in replies %}
+  <div class="reply-box">
+    <p>{{ reply.content }}</p>
+    <div class="reply-meta">
+      By <strong>{{ reply.author.username }}</strong> on {{ reply.created_at|date:"M d, Y H:i" }}
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <p>No replies yet. Be the first to reply!</p>
+  {% endif %}
 
-    {% if user.is_authenticated %}
-        <div class="question-box">
-            <h3>Post a Reply</h3>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn">Submit Reply</button>
-            </form>
-        </div>
-    {% else %}
-        <div class="question-box">
-            <p><a href="{% url 'login' %}">Login</a> to post a reply</p>
-        </div>
-    {% endif %}
+  {% if user.is_authenticated %}
+  <div class="form-box">
+    <h3>Post a Reply</h3>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn">Submit Reply</button>
+    </form>
+  </div>
+  {% else %}
+  <div class="question-box">
+    <p><a href="{% url 'login' %}">Login</a> to post a reply</p>
+  </div>
+  {% endif %}
 </body>
 </html>
