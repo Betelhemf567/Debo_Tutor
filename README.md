@@ -78,7 +78,9 @@ All environment variables configured in Render dashboard
 
 Anyone in the world can visit the live URL, register, and use the platform right now.
 
-### Project Structure
+
+
+### **Project Structure**
 
 debo-tutor/
 ├── core/                  # Main app (models, views, urls, templates)
@@ -89,5 +91,12 @@ debo-tutor/
 ├── Procfile               # For Render/Heroku/Fly.io
 ├── build.sh               # Install → collectstatic → migrate
 ├── requirements.txt
-└── README.md              # ← You are reading this
+└── README.md              
+
+Made with love, passion, and real collective effort
+Betelhem Feleke Chelebo
+African Leadership University – Computer Science
+For every student who needs help but has no one to ask.
+
+
 
