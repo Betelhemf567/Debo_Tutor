@@ -185,8 +185,8 @@ debo-tutor/
 
 | Item | Link |
 |------|------|
-| **SRS Document** | *(Add your final link here)* |
-| **Demo Video (5–10 min)** | *(Add the final video link here)* |
+| **SRS Document** | *https://docs.google.com/document/d/1J6yLgQK9Ac2XJU789VaHqVuAVfUeyviW3YjiMMichSk/edit?usp=sharing* |
+| **Demo Video (5–10 min)** | ** |
 | **Live Deployed App** | https://debo-tutor-collaboration.onrender.com |
 
 ---
