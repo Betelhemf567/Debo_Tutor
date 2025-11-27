@@ -60,3 +60,34 @@ python manage.py createsuperuser
 
 # 6. Start the development server
 python manage.py runserver
+
+Open your browser → http://127.0.0.1:8000
+
+Register at /register/
+Login at /login/
+Start posting and answering questions!
+
+Production Deployment (Already Live)
+The application is fully deployed and publicly accessible at the link above.
+Deployed using:
+
+Render.com free web service
+Automatic builds via build.sh and Procfile
+Free PostgreSQL add-on
+All environment variables configured in Render dashboard
+
+Anyone in the world can visit the live URL, register, and use the platform right now.
+
+##Project Structure
+
+debo-tutor/
+├── core/                  # Main app (models, views, urls, templates)
+├── templates/             # Register, login, home, question list, etc.
+├── static/                # CSS, images
+├── debo/                  # Project settings & wsgi
+├── manage.py
+├── Procfile               # For Render/Heroku/Fly.io
+├── build.sh               # Install → collectstatic → migrate
+├── requirements.txt
+└── README.md              # ← You are reading this
+
