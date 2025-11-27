@@ -83,7 +83,7 @@ All features match the SRS functional requirements and system design diagrams.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Betelhemf567/debo-tutor.git
+git clone https://github.com/Betelhemf567/Debo_Tutor.git
 cd debo-tutor
 
 # 2. Create and activate a virtual environment
