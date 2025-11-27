@@ -1,44 +1,64 @@
 # Debo – Student Peer-to-Peer Learning Platform  
-(ደቦ – ተማሪዎች ብቻ የሚጠቀሙበት የጋራ ትምህርት መድረክ)
+*(ደቦ – ተማሪዎች ብቻ የሚጠቀሙበት የጋራ ትምህርት መድረክ)*
 
-**Live Public URL** → https://debo-tutor-collaboration.onrender.com/
+**Live Public URL:** https://debo-tutor-collaboration.onrender.com  
 
-
-## Summative Submission Links (28 November 2025)
-
-- **Video Demo (5–10 min)** → https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing ←←← REPLACE THIS  
-- **SRS Document** → https://docs.google.com/document/d/YOUR_SRS_ID/edit?usp=sharing ←←← REPLACE THIS  
-- **Live Deployed App** → https://debo-tutor-collaboration.onrender.com/
+  
 
 ---
 
-### Problem Statement & Why It Matters
-In Ethiopia — especially in underserved regions like **Benishangul-Gumuz** — students face:
-- Very few qualified tutors
-- Expensive or completely unavailable private tutoring
-- No structured platform for peer academic support
-- Lack of free, localized study materials
+## Summative Submission Links – 28 November 2025
 
-UNESCO (2022) estimates Africa needs **17 million more teachers by 2030**. In rural Ethiopia, students rely on informal study groups that are inconsistent, location-bound, and often unproductive.
+| Item                          | Link |
+|-------------------------------|------|
+| Video Demo (5–10 min)         | https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing ←←← **Replace this** |
+| SRS Document                  | https://docs.google.com/document/d/1J6yLgQK9Ac2XJU789VaHqVuAVfUeyviW3YjiMMichSk/edit?usp=sharing |
+| Live Deployed Application     | https://debo-tutor-collaboration.onrender.com |
 
-**Debo** solves this by providing a **free, student-only, mobile-friendly platform** where learners can ask questions, answer each other, and truly learn together — embodying the Amharic word “Debo” (collective effort).
 
-### Implemented Features (Exactly as required by SRS)
-- Register / Login / Logout (simple 4-digit PIN system – ideal for students)
-- Post academic questions (title, description, subject: Math, Science, English, History, Other)
-- Reply to any question
-- View all questions (newest first)
-- Clean, fully responsive design that works perfectly on low-end phones and slow internet
-- Fully deployed and publicly accessible worldwide
+
+---
+
+### Problem Statement & Impact
+In underserved regions of Ethiopia — especially **Benishangul-Gumuz** — students face critical barriers to academic success:
+- Severe shortage of qualified tutors
+- High cost or complete absence of private tutoring
+- Reliance on inconsistent, location-bound informal study groups
+- Limited access to supplementary learning materials
+
+According to UNESCO (2022), Africa requires **17 million additional teachers by 2030** to achieve quality education goals. In rural and semi-urban Ethiopia, these gaps disproportionately affect secondary and university students preparing for national exams.
+
+**Debo** addresses this challenge by providing a **free, student-only, mobile-first peer learning platform** that enables collaborative question-asking, answering, and knowledge sharing — embodying the Ethiopian cultural value of **"Debo"** (collective effort).
+
+---
+
+### Implemented Features (Aligned with SRS & System Design)
+
+| Feature                        | Status   | Description |
+|--------------------------------|----------|-----------|
+| User Registration & Login      | Done     | Simple username + 4-digit PIN (ideal for students) |
+| Secure Logout                  | Done     | Full session termination |
+| Post Academic Questions        | Done     | Title, description, subject selection |
+| Reply to Questions             | Done     | Threaded, timestamped responses |
+| View All Questions             | Done     | Chronological listing (newest first) |
+| Responsive & Mobile-First UI   | Done     | Works flawlessly on low-end devices |
+| Publicly Accessible Deployment | Done     | Live on Render.com with PostgreSQL |
+
+
+
+---
 
 ### Technology Stack
-- Backend: Django (Python)
-- Database: SQLite (development) → PostgreSQL (production)
-- Frontend: HTML5 + custom responsive CSS
-- Deployment: Render.com (free tier) + Gunicorn + Whitenoise
-- Authentication: Django built-in auth
+- **Framework:** Django 4.x (Python)
+- **Database:** SQLite (development) → PostgreSQL (production)
+- **Frontend:** HTML5, CSS3, Django Templates (fully responsive)
+- **Authentication:** Django Auth with custom 4-digit PIN
+- **Deployment:** Render.com (free tier), Gunicorn, Whitenoise
+- **Build Automation:** `Procfile` + `build.sh`
 
-### How to Run Locally – Step-by-Step (100% reproducible)
+---
+
+### How to Run Locally (100% Reproducible Steps)
 
 ```bash
 # 1. Clone the repository
@@ -47,7 +67,7 @@ cd debo-tutor
 
 # 2. Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate        # On Windows: venv\Scripts\activate
+source venv/bin/activate        # Windows: venv\Scripts\activate
 
 # 3. Install dependencies
 pip install -r requirements.txt
@@ -55,7 +75,7 @@ pip install -r requirements.txt
 # 4. Apply database migrations
 python manage.py migrate
 
-# 5. (Optional) Create superuser for admin panel
+# 5. (Optional) Create admin user
 python manage.py createsuperuser
 
 # 6. Start the development server
@@ -63,40 +83,37 @@ python manage.py runserver
 
 Open your browser → http://127.0.0.1:8000
 
-Register at /register/
-Login at /login/
+Register → /register/
+Login → /login/
 Start posting and answering questions!
 
-Production Deployment (Already Live)
-The application is fully deployed and publicly accessible at the link above.
-Deployed using:
+Production Deployment (Live & Publicly Accessible)
+Live URL: https://debo-tutor-collaboration.onrender.com
+Deployed successfully using:
 
 Render.com free web service
-Automatic builds via build.sh and Procfile
-Free PostgreSQL add-on
-All environment variables configured in Render dashboard
+Automatic builds triggered by GitHub pushes
+build.sh script: install → collectstatic → migrate
+Free PostgreSQL database add-on
+All environment variables securely configured
 
-Anyone in the world can visit the live URL, register, and use the platform right now.
+Anyone worldwide can access, register, and use the platform immediately.
 
 
-
-### **Project Structure**
-
-debo-tutor/
-├── core/                  # Main app (models, views, urls, templates)
-├── templates/             # Register, login, home, question list, etc.
-├── static/                # CSS, images
-├── debo/                  # Project settings & wsgi
+Project Structure
+textdebo-tutor/
+├── core/                  # Main app (models, views, URLs, templates)
+├── templates/             # register.html, login.html, question list, etc.
+├── static/                # Custom CSS and assets
+├── debo/                  # Project settings & WSGI
 ├── manage.py
-├── Procfile               # For Render/Heroku/Fly.io
-├── build.sh               # Install → collectstatic → migrate
+├── Procfile               # Deployment command
+├── build.sh               # Build automation
 ├── requirements.txt
-└── README.md              
+└── README.md              # ← You are reading this
 
-Made with love, passion, and real collective effort
+
+Made with passion, purpose, and true collective effort
 Betelhem Feleke Chelebo
-African Leadership University – Computer Science
-For every student who needs help but has no one to ask.
-
-
-
+African Leadership University 
+For every student who has ever needed help but had no one to ask.
