@@ -84,7 +84,7 @@ All features match the SRS functional requirements and system design diagrams.
 ```bash
 # 1. Clone the repository
 git clone https://github.com/Betelhemf567/Debo_Tutor.git
-cd debo-tutor
+cd Debo_Tutor
 
 # 2. Create and activate a virtual environment
 python -m venv venv
@@ -96,10 +96,7 @@ pip install -r requirements.txt
 # 4. Apply database migrations
 python manage.py migrate
 
-# 5. (Optional) Create admin user
-python manage.py createsuperuser
-
-# 6. Start the development server
+# 5. Start the development server
 python manage.py runserver
 ```
 
@@ -186,7 +183,7 @@ debo-tutor/
 | Item | Link |
 |------|------|
 | **SRS  Document** | *https://docs.google.com/document/d/1J6yLgQK9Ac2XJU789VaHqVuAVfUeyviW3YjiMMichSk/edit?usp=sharing* |
-| **Demo Video (5–10 min)** | ** |
+| **Demo Video (5–10 min)** | *https://youtu.be/n1K-43y6_I0* |
 | **Live Deployed App** | https://debo-tutor-collaboration.onrender.com/ |
 
 ---
