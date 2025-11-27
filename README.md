@@ -96,6 +96,14 @@ pip install -r requirements.txt
 # 4. Apply database migrations
 python manage.py migrate
 
+# 5. Create admin account
+python manage.py createsuperuser  
+# → Enter username (e.g., admin)
+# → Enter email (you can press Enter to skip)
+# → Enter a strong password (or 4-digit PIN like 1234 for testing)
+# → Confirm password
+# → Success! Admin account created
+
 # 5. Start the development server
 python manage.py runserver
 ```
