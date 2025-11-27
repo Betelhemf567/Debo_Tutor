@@ -78,7 +78,7 @@ All environment variables configured in Render dashboard
 
 Anyone in the world can visit the live URL, register, and use the platform right now.
 
-##Project Structure
+### Project Structure
 
 debo-tutor/
 ├── core/                  # Main app (models, views, urls, templates)
